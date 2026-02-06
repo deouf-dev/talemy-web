@@ -1,9 +1,9 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Calendar, Clock, Plus, Loader2, X } from "lucide-react";
+import { Calendar, Clock, Loader2, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { AddAvailabilityDialog } from "@/components/dashboard/AddAvailabilityDialog";
 import {
   useUpcomingLessons,
   useMyAvailability,
@@ -21,6 +21,11 @@ const DAYS_OF_WEEK = [
   "Vendredi",
   "Samedi",
 ];
+
+// Format time from HH:MM:SS to HH:MM
+const formatTimeWithoutSeconds = (time: string) => {
+  return time.split(":").slice(0, 2).join(":");
+};
 
 export default function SchedulePage() {
   const { user } = useAuth();
@@ -73,12 +78,7 @@ export default function SchedulePage() {
               : "Consultez vos cours à venir"}
           </p>
         </div>
-        {isTeacher && (
-          <Button>
-            <Plus className="h-4 w-4 mr-2" />
-            Ajouter un créneau
-          </Button>
-        )}
+        {isTeacher && <AddAvailabilityDialog />}
       </div>
 
       {/* Cours à venir */}
@@ -201,7 +201,8 @@ export default function SchedulePage() {
                               variant="outline"
                               className="text-sm group relative pr-7"
                             >
-                              {slot.startTime} - {slot.endTime}
+                              {formatTimeWithoutSeconds(slot.startTime)} -{" "}
+                              {formatTimeWithoutSeconds(slot.endTime)}
                               <button
                                 onClick={() => handleDeleteSlot(slot.id)}
                                 className="absolute right-1 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 hover:text-destructive transition-opacity"
