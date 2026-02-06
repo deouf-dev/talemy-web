@@ -1,5 +1,11 @@
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tableau de bord",
+  description: "Gérez vos cours, disponibilités et messages sur Talemy.",
+};
 
 export default function DashboardLayout({
   children,
