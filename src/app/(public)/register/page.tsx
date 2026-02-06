@@ -56,7 +56,7 @@ export default function RegisterPage() {
         selectedRole,
       );
       auth.login(token, user);
-      router.replace(`/${user.role === "TEACHER" ? "dashboard" : "teachers"}`);
+      router.replace(`/${user?.role === "TEACHER" ? "dashboard" : "teachers"}`);
     } catch (error: any) {
       if (error.statusCode === 409) {
         setError("Cet email est déjà utilisé.");
