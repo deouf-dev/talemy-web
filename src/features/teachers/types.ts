@@ -57,8 +57,8 @@ export type AvailabilitySlot = {
   id: number;
   teacherUserId: number;
   dayOfWeek: number; // 0-6 (0 = Dimanche)
-  startAt: string;
-  endAt: string;
+  startTime: string;
+  endTime: string;
   createdAt: string;
   updatedAt: string;
 };

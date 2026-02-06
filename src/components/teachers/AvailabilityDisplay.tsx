@@ -18,13 +18,10 @@ const DAYS_OF_WEEK = [
   "Samedi",
 ];
 
-function formatTime(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleTimeString("fr-FR", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
+// Format time from HH:MM:SS to HH:MM
+const formatTimeWithoutSeconds = (time: string) => {
+  return time.split(":").slice(0, 2).join(":");
+};
 
 export function AvailabilityDisplay({ slots }: AvailabilityDisplayProps) {
   // Grouper les créneaux par jour de la semaine
@@ -41,8 +38,8 @@ export function AvailabilityDisplay({ slots }: AvailabilityDisplayProps) {
 
   // Trier les créneaux par heure de début
   Object.keys(slotsByDay).forEach((day) => {
-    slotsByDay[parseInt(day)].sort(
-      (a, b) => new Date(a.startAt).getTime() - new Date(b.startAt).getTime(),
+    slotsByDay[parseInt(day)].sort((a, b) =>
+      a.startTime.localeCompare(b.startTime),
     );
   });
 
@@ -84,7 +81,8 @@ export function AvailabilityDisplay({ slots }: AvailabilityDisplayProps) {
                     className="text-sm px-3 py-1.5 border-primary/30"
                   >
                     <Clock className="h-3 w-3 mr-1 inline" />
-                    {formatTime(slot.startAt)} - {formatTime(slot.endAt)}
+                    {formatTimeWithoutSeconds(slot.startTime)} -{" "}
+                    {formatTimeWithoutSeconds(slot.endTime)}
                   </Badge>
                 ))}
               </div>
