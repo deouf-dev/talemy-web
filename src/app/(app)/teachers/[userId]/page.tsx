@@ -143,11 +143,9 @@ export default function TeacherProfilePage() {
         )}
 
         {/* Availability Section - Only visible for teachers */}
-        {user?.role === "TEACHER" &&
-          availabilityData &&
-          availabilityData.slots && (
-            <AvailabilityDisplay slots={availabilityData.slots} />
-          )}
+        {availabilityData && availabilityData.slots && (
+          <AvailabilityDisplay slots={availabilityData.slots} />
+        )}
       </div>
 
       {/* Contact Dialog */}

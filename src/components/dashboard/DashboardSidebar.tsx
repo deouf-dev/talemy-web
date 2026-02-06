@@ -61,7 +61,7 @@ export function DashboardSidebar() {
   );
 
   return (
-    <aside className="fixed left-0 top-16 bottom-0 w-64 bg-card border-r overflow-y-auto">
+    <aside className="hidden lg:block fixed left-0 top-16 bottom-0 w-64 bg-card border-r overflow-y-auto">
       <nav className="p-4 space-y-2">
         {visibleMenuItems.map((item) => {
           const Icon = item.icon;

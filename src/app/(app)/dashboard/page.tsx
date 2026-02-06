@@ -146,23 +146,23 @@ export default function DashboardPage() {
               return (
                 <div
                   key={lesson.id}
-                  className="flex items-center justify-between p-4 rounded-lg border"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 rounded-lg border"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                    <div className="h-10 w-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
                       <User className="h-5 w-5 text-primary" />
                     </div>
-                    <div>
-                      <p className="font-medium">
+                    <div className="min-w-0">
+                      <p className="font-medium truncate">
                         {lesson.student.name} {lesson.student.surname}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-muted-foreground truncate">
                         {lesson.subject.name}
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="text-right">
+                  <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4">
+                    <div className="text-left sm:text-right">
                       <p className="text-sm font-medium">
                         {new Date(lesson.startAt).toLocaleDateString("fr-FR", {
                           weekday: "short",
@@ -187,7 +187,7 @@ export default function DashboardPage() {
                         })}
                       </p>
                     </div>
-                    <Badge variant={statusInfo.variant}>
+                    <Badge variant={statusInfo.variant} className="shrink-0">
                       {statusInfo.label}
                     </Badge>
                   </div>
@@ -210,13 +210,13 @@ export default function DashboardPage() {
           <div className="space-y-4">
             {recentReviews.map((review) => (
               <div key={review.id} className="p-4 rounded-lg border">
-                <div className="flex items-start justify-between mb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="h-10 w-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
                       <User className="h-5 w-5 text-primary" />
                     </div>
-                    <div>
-                      <p className="font-medium">
+                    <div className="min-w-0">
+                      <p className="font-medium truncate">
                         {review.student.name} {review.student.surname}
                       </p>
                       <div className="flex items-center gap-1">
@@ -233,7 +233,7 @@ export default function DashboardPage() {
                       </div>
                     </div>
                   </div>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-muted-foreground shrink-0">
                     {new Date(review.createdAt).toLocaleDateString("fr-FR")}
                   </p>
                 </div>

@@ -69,10 +69,10 @@ export default function SchedulePage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold">Emploi du temps</h2>
-          <p className="text-muted-foreground">
+          <h2 className="text-2xl sm:text-3xl font-bold">Emploi du temps</h2>
+          <p className="text-muted-foreground text-sm sm:text-base">
             {isTeacher
               ? "Gérez vos disponibilités et vos cours à venir"
               : "Consultez vos cours à venir"}
@@ -113,10 +113,10 @@ export default function SchedulePage() {
                 return (
                   <div
                     key={lesson.id}
-                    className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted/50 transition-colors"
+                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 rounded-lg border hover:bg-muted/50 transition-colors"
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="text-center">
+                    <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                      <div className="text-center shrink-0">
                         <p className="text-2xl font-bold">
                           {startDate.getDate()}
                         </p>
@@ -126,32 +126,34 @@ export default function SchedulePage() {
                           })}
                         </p>
                       </div>
-                      <div className="h-12 w-px bg-border" />
-                      <div>
-                        <p className="font-semibold">
+                      <div className="h-12 w-px bg-border hidden sm:block" />
+                      <div className="min-w-0">
+                        <p className="font-semibold truncate">
                           {user?.role === "TEACHER"
                             ? `${lesson.student.name} ${lesson.student.surname}`
                             : lesson.teacher
                               ? `${lesson.teacher.name} ${lesson.teacher.surname}`
                               : "N/A"}
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground truncate">
                           {lesson.subject.name}
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
                       <div className="flex items-center gap-2 text-sm">
-                        <Clock className="h-4 w-4 text-muted-foreground" />
-                        <span>
-                          {formatTime(lesson.startAt)} -{" "}
-                          {formatTime(endDate.toISOString())}
-                        </span>
-                        <span className="text-muted-foreground">
-                          ({lesson.durationMin} min)
-                        </span>
+                        <Clock className="h-4 w-4 text-muted-foreground shrink-0" />
+                        <div className="flex flex-wrap items-center gap-1">
+                          <span className="whitespace-nowrap">
+                            {formatTime(lesson.startAt)} -{" "}
+                            {formatTime(endDate.toISOString())}
+                          </span>
+                          <span className="text-muted-foreground whitespace-nowrap">
+                            ({lesson.durationMin} min)
+                          </span>
+                        </div>
                       </div>
-                      <Badge variant={statusInfo.variant}>
+                      <Badge variant={statusInfo.variant} className="shrink-0">
                         {statusInfo.label}
                       </Badge>
                     </div>
@@ -188,9 +190,9 @@ export default function SchedulePage() {
                   .map(([dayOfWeek, slots]) => (
                     <div
                       key={dayOfWeek}
-                      className="flex items-start gap-4 p-4 rounded-lg border"
+                      className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4 p-4 rounded-lg border"
                     >
-                      <div className="w-32 font-semibold">
+                      <div className="sm:w-32 font-semibold shrink-0">
                         {DAYS_OF_WEEK[parseInt(dayOfWeek)]}
                       </div>
                       <div className="flex-1">

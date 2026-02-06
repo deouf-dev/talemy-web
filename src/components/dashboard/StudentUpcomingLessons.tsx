@@ -49,15 +49,15 @@ export function StudentUpcomingLessons() {
                   key={lesson.id}
                   className="flex items-start gap-3 p-3 rounded-lg border hover:bg-accent/50 transition-colors"
                 >
-                  <div className="flex-1">
-                    <div className="font-semibold mb-1">
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold mb-1 truncate">
                       {lesson.subject.name}
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-muted-foreground truncate">
                       Avec {lesson.teacher?.name} {lesson.teacher?.surname}
                     </div>
-                    <div className="flex items-center gap-2 mt-2">
-                      <Badge variant="outline" className="text-xs">
+                    <div className="flex flex-wrap items-center gap-2 mt-2">
+                      <Badge variant="outline" className="text-xs shrink-0">
                         <Calendar className="h-3 w-3 mr-1" />
                         {startDate.toLocaleDateString("fr-FR", {
                           weekday: "short",
@@ -65,7 +65,7 @@ export function StudentUpcomingLessons() {
                           month: "short",
                         })}
                       </Badge>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs shrink-0">
                         <Clock className="h-3 w-3 mr-1" />
                         {startDate.toLocaleTimeString("fr-FR", {
                           hour: "2-digit",
@@ -79,7 +79,7 @@ export function StudentUpcomingLessons() {
                           hour12: false,
                         })}
                       </Badge>
-                      <Badge variant={statusInfo.variant}>
+                      <Badge variant={statusInfo.variant} className="shrink-0">
                         {statusInfo.label}
                       </Badge>
                     </div>
