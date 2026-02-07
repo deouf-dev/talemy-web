@@ -12,7 +12,6 @@ type TeacherCardProps = {
 
 export function TeacherCard({ teacher }: TeacherCardProps) {
   const initials = `${teacher.name[0]}${teacher.surname[0]}`.toUpperCase();
-  console.log(teacher);
   return (
     <Link href={`/teachers/${teacher.id}`}>
       <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer">

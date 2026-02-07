@@ -56,12 +56,6 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
 
     // Événements de messages
     newSocket.on("message:new", (data) => {
-      console.log("📨 Message reçu:", {
-        senderUserId: data.message.senderUserId,
-        currentUserId: user?.id,
-        areSame: data.message.senderUserId === user?.id,
-      });
-
       // Invalider les queries des messages pour cette conversation
       queryClient.invalidateQueries({
         queryKey: ["conversations", data.conversationId, "messages"],
